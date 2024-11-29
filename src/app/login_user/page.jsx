@@ -15,7 +15,7 @@ export default function LoginUserPage() {
     
     try {
       // メールアドレスとパスワードをバックエンドに送信
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('https://tech0-gen-7-step4-studentwebapp-pos-18-e0gvedfkdag3chab.eastus-01.azurewebsites.net/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export default function LoginUserPage() {
       if (response.ok) {
         // ログイン成功
         alert('ログイン成功');
-        router.push('http://localhost:3000/home'); // ホームに遷移
+        router.push('https://tech0-7th-shiryousan-hwcka0dgcja4dafw.japaneast-01.azurewebsites.net/home'); // ホームに遷移
       } else {
         // ログイン失敗
         alert(data.message || 'ログイン失敗');
