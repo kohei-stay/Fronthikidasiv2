@@ -15,7 +15,7 @@ export default function LoginUserPage() {
     
     try {
       // メールアドレスとパスワードをバックエンドに送信
-      const response = await fetch('https://tech0-gen-7-step4-studentwebapp-pos-18-e0gvedfkdag3chab.eastus-01.azurewebsites.net/api/login', {
+      const response = await fetch('https://tech0-gen-7-step4-studentwebapp-pos-18-e0gvedfkdag3chab.eastus-01.azurewebsites.net/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
