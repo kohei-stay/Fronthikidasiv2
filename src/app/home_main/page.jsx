@@ -204,9 +204,8 @@ export default function HomePage() {
 
             {/* 検索ボタン */}
             <div className="flex justify-end mt-4">
-              <button className="bg-sky-300 text-black font-bold p-2 rounded shadow hover:bg-sky-400">
+              <button className="bg-sky-300 text-black font-bold p-2 rounded shadow hover:bg-sky-400" onClick={handleSearch}>
                 検索
-                onClick={handleSearch}
               </button>
             </div>
           </div>
