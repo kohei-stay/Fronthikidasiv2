@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
@@ -34,7 +34,7 @@ export default function HomePage() {
   
     setError("");
     setLoading(true);
-  
+    console.log(query)
     try {
       // クエリパラメータを作成
       const params = new URLSearchParams();
