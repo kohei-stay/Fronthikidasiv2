@@ -5,7 +5,13 @@ import { useState } from 'react';
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('メイン'); // 初期タブを「メイン」に設定
   const [query, setQuery] = useState(""); // 検索クエリ
+  const [product, setProduct] = useState(""); // 商材
+  const [department, setDepartment] = useState(""); // 作成部署
+  const [industry, setIndustry] = useState(""); // 業界
+  const [price, setPrice] = useState(""); // 提案価格
+  const [company, setCompany] = useState(""); // 提案価格
   const [results, setResults] = useState([]); // 検索結果
+  const [project, setProject] = useState([]); // 検索結果
   const [loading, setLoading] = useState(false); // ローディング状態
   const [error, setError] = useState(""); // エラー状態
 
@@ -16,7 +22,17 @@ export default function HomePage() {
     }
     setError("");
     setLoading(true);
+
     try {
+          // クエリパラメータを作成
+      const params = new URLSearchParams({
+        q: query,                // キーワード
+        product: product,        // 商材
+        department: department,  // 作成部署
+        industry: industry,      // 業界
+        price: price,            // 提案価格
+    });
+
       // API呼び出し（仮のエンドポイント）
       const response = await fetch(`/https://tech0-gen-7-step4-studentwebapp-pos-18-e0gvedfkdag3chab.eastus-01.azurewebsites.net/home_main?q=${query}`);
       if (!response.ok) throw new Error("検索に失敗しました");
@@ -77,19 +93,28 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <label className="block mb-1">商材</label>
-                <select className="border border-gray-300 p-2 w-full h-10">
+                <select className="border border-gray-300 p-2 w-full h-10"
+                  value={product}
+                  onChange={(e) => setProduct(e.target.value)}
+                >
                   <option value="">選択してください</option>
                   <option value="product1">商材１</option>
                   <option value="product2">商材２</option>
                   <option value="product3">商材３</option>
+                  
                 </select>
               </div>
               <div>
-                <label className="block mb-1">作成者（部署）</label>
-                <input
-                  type="text"
-                  className="border border-gray-300 p-2 w-full h-10"
-                />
+                <label className="block mb-1">作成部署</label>
+                <select className="border border-gray-300 p-2 w-full h-10"
+                  value={department}
+                  onChange={(e) => setDepartment(e.target.value)}
+                >
+                  <option value="">選択してください</option>
+                  <option value="product1">営業部1</option>
+                  <option value="product2">営業部2</option>
+                  <option value="product2">営業部3</option>
+                </select>
               </div>
             </div>
 
@@ -97,11 +122,14 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <label className="block mb-1">プロジェクト</label>
-                <select className="border border-gray-300 p-2 w-full h-10">
+                <select className="border border-gray-300 p-2 w-full h-10"
+                   value={project}
+                   onChange={(e) => setProject(e.target.value)}
+                >
                   <option value="">選択してください</option>
-                  <option value="project1">プロジェクト１</option>
-                  <option value="project2">プロジェクト２</option>
-                  <option value="project3">プロジェクト３</option>
+                  <option value="project1">プロジェクト1</option>
+                  <option value="project2">プロジェクト2</option>
+                  <option value="project3">プロジェクト3</option>
                 </select>
               </div>
               <div>
@@ -112,15 +140,19 @@ export default function HomePage() {
                 />
               </div>
             </div>
-
             {/* 5段目 */}
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <label className="block mb-1">業界</label>
-                <input
-                  type="text"
-                  className="border border-gray-300 p-2 w-full h-10"
-                />
+                <select className="border border-gray-300 p-2 w-full h-10"
+                  value={industry}
+                  onChange={(e) => setIndustry(e.target.value)}
+                >
+                  <option value="">選択してください</option>
+                  <option value="product1">製造業</option>
+                  <option value="product2">建設業</option>
+                  <option value="product3">情報通信業</option>
+                </select>
               </div>
               <div>
                 <label className="block mb-1">コメント数</label>
@@ -137,17 +169,22 @@ export default function HomePage() {
             {/* 6段目 */}
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <label className="block mb-1">顧客</label>
-                <select className="border border-gray-300 p-2 w-full h-10">
+                <label className="block mb-1">会社</label>
+                <select className="border border-gray-300 p-2 w-full h-10"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                >
                   <option value="">選択してください</option>
-                  <option value="customer1">顧客1</option>
-                  <option value="customer2">顧客2</option>
-                  <option value="customer3">顧客3</option>
+                  <option value="customer1">会社A</option>
+                  <option value="customer2">会社B</option>
+                  <option value="customer3">会社C</option>
                 </select>
               </div>
               <div>
                 <label className="block mb-1">いいね♥数</label>
-                <select className="border border-gray-300 p-2 w-full h-10">
+                <select className="border border-gray-300 p-2 w-full h-10"
+
+                >
                   <option value="">選択してください</option>
                   <option value="0-50">0～50</option>
                   <option value="51-100">51～100</option>
@@ -161,8 +198,11 @@ export default function HomePage() {
             {/* 7段目 */}
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <label className="block mb-1">価格</label>
-                <select className="border border-gray-300 p-2 w-full h-10">
+                <label className="block mb-1">提案価格</label>
+                <select className="border border-gray-300 p-2 w-full h-10"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                >
                   <option value="">選択してください</option>
                   <option value="0-100">0～100万</option>
                   <option value="101-200">101万～200万</option>
@@ -213,28 +253,43 @@ export default function HomePage() {
       </div>
       
             {/* 検索結果表示 */}
-            <div className="mt-6">
-        {loading && <p>検索中...</p>} {/* ローディング中の表示 */}
-        {error && <p className="text-red-500">{error}</p>} {/* エラー表示 */}
-        {results.length > 0 && (             // 検索結果が存在する場合の表示 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">    
-            {results.map((item, index) => (
-              <div
-                key={index}
-                className="border p-4 rounded shadow-sm hover:shadow-md"
-              >
-                <h3 className="text-lg font-bold">{item.title}</h3>
-                <p>{item.description}</p>
-                <img src={item.image} alt={item.title} className="w-full" />
-              </div>
-            ))}
-          </div>
-        )}
-        {results.length === 0 && !loading && !error && (
-          <p>検索結果がありません。</p>
-        )}
-      </div>
-
+        <div className="mt-6">
+          {loading && <p>検索中...</p>} {/* ローディング中の表示 */}
+          {error && <p className="text-red-500">{error}</p>} {/* エラー表示 */}
+          {results.length > 0 && (             // 検索結果が存在する場合の表示 
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">    
+              {results.map((item, index) => (
+                <div
+                  key={index}
+                  className="border p-4 rounded shadow-sm hover:shadow-md"
+                >
+                {/* サムネイル画像 */}
+                <a href={item.driveLink} target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src={item.thumbnailLink} 
+                    alt={item.title} 
+                    className="w-full h-40 object-cover rounded mb-2" 
+                  />
+                </a>
+                {/* タイトル */}
+                  <h3 className="text-lg font-bold">{item.title}</h3>
+                 {/* Googleドライブへのリンク */}
+                  <a 
+                    href={item.driveLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-sky-500 hover:underline"
+                    
+                  >詳細を見る
+                  </a>
+                </div>
+              ))}
+            </div>
+          )}
+          {results.length === 0 && !loading && !error && (
+            <p>検索結果がありません。</p>
+          )}
+        </div>
     </div>
   );
 }
