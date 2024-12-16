@@ -46,6 +46,8 @@ export default function HomePage() {
       if (price) params.append("price", price); // 提案価格
       if (company) params.append("company", company); // 会社
       if (project) params.append("project", project); // プロジェクト
+      console.log(params)
+      console.log(`https://tech0-gen-7-step4-studentwebapp-pos-18-e0gvedfkdag3chab.eastus-01.azurewebsites.net/home_main?${params}`)
   
       // バックエンドへのリクエスト
       const response = await fetch(
@@ -306,7 +308,7 @@ export default function HomePage() {
             </div>
           )}
           {results.length === 0 && !loading && !error && (
-            <p>検索結果がありません。</p>
+            <p>該当する検索結果が見つかりませんでした。条件を変更して再度お試しください。</p>
           )}
         </div>
     </div>
