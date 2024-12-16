@@ -25,7 +25,8 @@ export default function HomePage() {
       !department &&
       !industry &&
       !price &&
-      !company
+      !company &&
+      !project 
     ) {
       setError("検索条件を1つ以上入力してください");
       return;
@@ -44,6 +45,7 @@ export default function HomePage() {
       if (industry) params.append("industry", industry); // 業界
       if (price) params.append("price", price); // 提案価格
       if (company) params.append("company", company); // 会社
+      if (project) params.append("project", project); // プロジェクト
   
       // バックエンドへのリクエスト
       const response = await fetch(
@@ -55,7 +57,8 @@ export default function HomePage() {
       const data = await response.json();
       setResults(data.results); // 検索結果をセット
     } catch (err) {
-      setError(err.message || "エラーが発生しました");
+      console.error("APIエラー:", err); // コンソールに詳細を出力
+      setError(err.message || "エラーが発生しました"); // ユーザー向けエラーメッセージ
     } finally {
       setLoading(false);
     }
