@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+
+
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('メイン'); // 初期タブを「メイン」に設定
   const [query, setQuery] = useState(""); // 検索クエリ
@@ -9,33 +11,47 @@ export default function HomePage() {
   const [department, setDepartment] = useState(""); // 作成部署
   const [industry, setIndustry] = useState(""); // 業界
   const [price, setPrice] = useState(""); // 提案価格
-  const [company, setCompany] = useState(""); // 提案価格
+  const [company, setCompany] = useState(""); // 会社価格
   const [results, setResults] = useState([]); // 検索結果
   const [project, setProject] = useState([]); // 検索結果
   const [loading, setLoading] = useState(false); // ローディング状態
   const [error, setError] = useState(""); // エラー状態
 
   const handleSearch = async () => {
-    if (!query) {
-      setError("検索キーワードを入力してください");
+    // 入力フィールドのいずれかに値があるか確認
+    if (
+      !query &&
+      !product &&
+      !department &&
+      !industry &&
+      !price &&
+      !company
+    ) {
+      setError("検索条件を1つ以上入力してください");
       return;
     }
+  
     setError("");
     setLoading(true);
-
+  
     try {
-          // クエリパラメータを作成
-      const params = new URLSearchParams({
-        q: query,                // キーワード
-        product: product,        // 商材
-        department: department,  // 作成部署
-        industry: industry,      // 業界
-        price: price,            // 提案価格
-    });
-
-      // API呼び出し（仮のエンドポイント）
-      const response = await fetch(`/https://tech0-gen-7-step4-studentwebapp-pos-18-e0gvedfkdag3chab.eastus-01.azurewebsites.net/home_main?q=${query}`);
+      // クエリパラメータを作成
+      const params = new URLSearchParams();
+  
+      if (query) params.append("q", query); // 検索キーワード
+      if (product) params.append("product", product); // 商材
+      if (department) params.append("department", department); // 作成部署
+      if (industry) params.append("industry", industry); // 業界
+      if (price) params.append("price", price); // 提案価格
+      if (company) params.append("company", company); // 会社
+  
+      // バックエンドへのリクエスト
+      const response = await fetch(
+        `https://tech0-gen-7-step4-studentwebapp-pos-18-e0gvedfkdag3chab.eastus-01.azurewebsites.net/home_main?${params}`
+      );
+  
       if (!response.ok) throw new Error("検索に失敗しました");
+  
       const data = await response.json();
       setResults(data.results); // 検索結果をセット
     } catch (err) {
