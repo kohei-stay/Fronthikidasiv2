@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function LoginUserPage() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
@@ -54,12 +54,12 @@ export default function LoginUserPage() {
           />
         </div>
 
-        {/* メールアドレス入力欄 */}
+        {/* ユーザーネーム入力欄 */}
         <input
-          type="email"
-          placeholder="メールアドレス"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="username"
+          placeholder="ユーザーネーム、またはメールアドレス"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           className="w-full mb-4 p-2 border border-gray-300 rounded"
           required
         />

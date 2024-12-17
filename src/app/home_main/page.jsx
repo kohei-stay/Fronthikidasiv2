@@ -132,9 +132,9 @@ export default function HomePage() {
                   onChange={(e) => setDepartment(e.target.value)}
                 >
                   <option value="">選択してください</option>
-                  <option value="product1">営業部1</option>
-                  <option value="product2">営業部2</option>
-                  <option value="product2">営業部3</option>
+                  <option value="営業部1">営業部1</option>
+                  <option value="営業部2">営業部2</option>
+                  <option value="営業部3">営業部3</option>
                 </select>
               </div>
             </div>
@@ -283,11 +283,11 @@ export default function HomePage() {
                 <div
                   key={index}
                   className="border p-4 rounded shadow-sm hover:shadow-md"
-                >
+                >                
                 {/* サムネイル画像 */}
-                <a href={item.driveLink} target="_blank" rel="noopener noreferrer">
+                <a href={item.drive_link} target="_blank" rel="noopener noreferrer">
                   <img 
-                    src={item.thumbnailLink} 
+                    src= {item.thumbnail_link}
                     alt={item.title} 
                     className="w-full h-40 object-cover rounded mb-2" 
                   />
@@ -296,7 +296,7 @@ export default function HomePage() {
                   <h3 className="text-lg font-bold">{item.title}</h3>
                  {/* Googleドライブへのリンク */}
                   <a 
-                    href={item.driveLink} 
+                    href={item.drive_link} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-sky-500 hover:underline"
