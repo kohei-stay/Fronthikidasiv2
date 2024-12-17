@@ -13,7 +13,7 @@ export default function HomePage() {
   const [price, setPrice] = useState(""); // 提案価格
   const [company, setCompany] = useState(""); // 会社価格
   const [results, setResults] = useState([]); // 検索結果
-  const [project, setProject] = useState([]); // 検索結果
+  const [project, setProject] = useState(""); // 検索結果
   const [loading, setLoading] = useState(false); // ローディング状態
   const [error, setError] = useState(""); // エラー状態
 
@@ -161,7 +161,7 @@ export default function HomePage() {
                 />
               </div>
             </div>
-            {/* 5段目 */}
+            {/* 5段目a */}
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <label className="block mb-1">業界</label>
