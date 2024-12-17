@@ -119,9 +119,9 @@ export default function HomePage() {
                   onChange={(e) => setProduct(e.target.value)}
                 >
                   <option value="">選択してください</option>
-                  <option value="product1">商材１</option>
-                  <option value="product2">商材２</option>
-                  <option value="product3">商材３</option>
+                  <option value="商材1">商材１</option>
+                  <option value="商材2">商材２</option>
+                  <option value="商材3">商材３</option>
                   
                 </select>
               </div>
