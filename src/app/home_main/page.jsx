@@ -295,7 +295,7 @@ export default function HomePage() {
                 </a>
                 {/* タイトル */}
                   <h3 className="text-lg font-bold">{item.title}</h3>
-                 {/* Googleドライブへのリンク */}
+                 {/* Googleドライブのリンク */}
                   <a 
                     href={item.drive_link} 
                     target="_blank" 
