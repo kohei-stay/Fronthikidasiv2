@@ -135,6 +135,7 @@ export default function HomePage() {
                   <option value="営業部1">営業部1</option>
                   <option value="営業部2">営業部2</option>
                   <option value="営業部3">営業部3</option>
+                  <option value="営業部4">営業部4</option>
                 </select>
               </div>
             </div>
@@ -170,9 +171,9 @@ export default function HomePage() {
                   onChange={(e) => setIndustry(e.target.value)}
                 >
                   <option value="">選択してください</option>
-                  <option value="product1">製造業</option>
-                  <option value="product2">建設業</option>
-                  <option value="product3">情報通信業</option>
+                  <option value="製造業">製造業</option>
+                  <option value="建設業">建設業</option>
+                  <option value="情報通信業">情報通信業</option>
                 </select>
               </div>
               <div>
@@ -196,9 +197,9 @@ export default function HomePage() {
                   onChange={(e) => setCompany(e.target.value)}
                 >
                   <option value="">選択してください</option>
-                  <option value="customer1">会社A</option>
-                  <option value="customer2">会社B</option>
-                  <option value="customer3">会社C</option>
+                  <option value="会社A">会社A</option>
+                  <option value="会社B">会社B</option>
+                  <option value="会社C">会社C</option>
                 </select>
               </div>
               <div>
